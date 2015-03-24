@@ -515,14 +515,13 @@ class RevisionManager(object):
         versions = self._get_versions(db).filter(
             content_type = content_type,
         ).select_related("revision")
-        if has_int_pk(model):
+        # if has_int_pk(model):
             # We can do this as a fast, indexed lookup.
-            object_id_int = int(object_id)
-            versions = versions.filter(object_id_int=object_id_int)
-        else:
+            # object_id_int = int(object_id)
+            # versions = versions.filter(object_id_int=object_id_int)
+        # else:
             # We can't do this using an index. Never mind.
-            object_id = force_text(object_id)
-            versions = versions.filter(object_id=object_id)
+        object_id = force_text(object_id)
         versions = versions.order_by("-pk")
         return versions
 
