@@ -521,6 +521,7 @@ class RevisionManager(object):
             # versions = versions.filter(object_id_int=object_id_int)
         # else:
             # We can't do this using an index. Never mind.
+        versions = versions.filter(object_id=object_id)
         object_id = force_text(object_id)
         versions = versions.order_by("-pk")
         return versions
